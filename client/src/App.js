@@ -1,44 +1,26 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
-import Sidebar from './Sidebar';
-
-function App() {
-  const isLoggedIn = () => !!localStorage.getItem('token');
-
-  return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      {isLoggedIn() ? (
-        <Route path="/" element={<Sidebar />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="sales" element={<SalesOrders />} />
-          <Route path="inventory" element={<Inventory />} />
-          <Route path="purchase" element={<PurchaseOrders />} />
-          <Route path="/user-roles" element={<UserRoles />} />
-        </Route>
-      ) : (
-        <Route path="*" element={<Navigate to="/login" />} />
-      )}
-    </Routes>
-  );
-}
-
-const isLoggedIn = () => !!localStorage.getItem('token');
+import Inventory from './pages/Inventory';
+import PurchaseOrder from './pages/PurchaseOrder';
+import SalesOrders from './pages/SalesOrders';
+import UserRoles from './pages/UserRoles';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/dashboard" />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route
-        path="/dashboard"
-        element={isLoggedIn() ? <Dashboard /> : <Navigate to="/login" />}
-      />
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="/purchase-orders" element={<PurchaseOrder />} />
+        <Route path="/sales-orders" element={<SalesOrders />} />
+        <Route path="/user-roles" element={<UserRoles />} />
+      </Routes>
+    </Router>
   );
 }
 
