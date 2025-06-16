@@ -17,6 +17,7 @@ function App() {
           <Route path="sales" element={<SalesOrders />} />
           <Route path="inventory" element={<Inventory />} />
           <Route path="purchase" element={<PurchaseOrders />} />
+          <Route path="/user-roles" element={<UserRoles />} />
         </Route>
       ) : (
         <Route path="*" element={<Navigate to="/login" />} />
